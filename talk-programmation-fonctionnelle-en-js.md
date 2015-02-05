@@ -268,8 +268,8 @@ La programmation fonctionnelle offre de belles manières d'écrire des programme
 
 # Ressources
 
-- [Learn You A Haskell For Great Good](http://learnyouahaskell.com/) : LE livre pour débuter Haskell ; il est très accessible ; disponible en papier ou en ligne ([traduction FR non officielle](http://lyah.haskell.fr/))
-- [JavaScript Alongé](https://leanpub.com/javascript-allonge) : un livre avancé sur JavaScript ; il explique et met en place certains concepts que nous avons survolés ici ; disponible en version dématérialisée ou en ligne
+- [Learn You A Haskell For Great Good](http://learnyouahaskell.com/) : LE livre pour débuter Haskell ; il est très accessible ([traduction FR non officielle](http://lyah.haskell.fr/))
+- [JavaScript Alongé](https://leanpub.com/javascript-allonge) : un livre avancé sur JavaScript ; il explique et met en place certains concepts que nous avons survolés ici
 - [Lo-Dash](https://lodash.com/) : une bibliothèque JavaScript qui propose notamment des fonctions d'ordre supérieur très intéressantes pour manipuler les collections
 - [Bacon.js](https://baconjs.github.io/) : une bibliothèque JavaScript qui permet de faire de la programmation fonctionnelle [réactive](https://fr.wikipedia.org/wiki/Programmation_r%C3%A9active)
 - [Is your programming language unreasonable?](http://fsharpforfunandprofit.com/posts/is-your-language-unreasonable/) *or, why predictability is important*
