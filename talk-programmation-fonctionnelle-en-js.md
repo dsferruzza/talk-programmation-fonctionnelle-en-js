@@ -16,11 +16,11 @@ C'est un paradigme différent de la programmation *impérative* "classique", ce 
 
 - nouveaux concepts
 - ré-apprendre à résoudre des problèmes simples
-- sortir de sa zone de confort
 
 Intérêt ?
 
 - prendre du recul sur la programmation
+- agrandir **et** consolider sa zone de confort
 - réutiliser les concepts intéressants pour faire de **meilleurs programmes**
 
 
@@ -97,6 +97,8 @@ Une fonction d’ordre supérieur est une fonction qui possède au moins l'une d
 - elle accepte au moins une autre fonction en paramètre
 - elle retourne une fonction en résultat
 
+<div style="text-align:center"><img src="img/first_class.gif" alt="" width="305"></div>
+
 
 # Exemple de fonction d'ordre supérieur
 
@@ -110,7 +112,8 @@ function foisTrois(x) {
 	return x * 3;
 }
 
-appliquerDeuxFois(foisTrois, 7); // 63
+appliquerDeuxFois(foisTrois, 7);
+// --> (7 * 3) * 3 = 63
 ```
 
 
@@ -120,6 +123,8 @@ appliquerDeuxFois(foisTrois, 7); // 63
 - écrire des fonctions composables, modulables, paramétrables
 
 On va voir un exemple concret : les opérations sur les tableaux en JS.
+
+<div style="text-align:center"><img src="img/inception.gif" alt="" width="330"></div>
 
 
 # Situation
@@ -244,7 +249,7 @@ function filter(tableau, predicat) {
 Si vous avez un tableau et que vous voulez :
 
 - appliquer une transformation sur chacune de ses cases (en conservant leur ordre/nombre) : **map**
-- supprimer certaines cases (en conservant l’ordre des autres) : **filter**
+- supprimer certaines cases (en conservant l’ordre et le contenu des autres) : **filter**
 - le parcourir pour construire une nouvelle structure de données : **reduce**
 
 
@@ -254,10 +259,11 @@ Si vous avez un tableau et que vous voulez :
 - utiliser des mécanismes qui facilitent le raisonnement :
 	- transparence référentielle
 	- fonctions d’ordre supérieur
+	- *évaluation paresseuse*
 	- *immuabilité*
 	- *systèmes de types avancés*
 
-La programmation fonctionnelle offre des belles manières d'écrire des programmes fiables et maintenables.
+La programmation fonctionnelle offre de belles manières d'écrire des programmes fiables et maintenables.
 
 
 # Ressources
@@ -266,6 +272,7 @@ La programmation fonctionnelle offre des belles manières d'écrire des programm
 - [JavaScript Alongé](https://leanpub.com/javascript-allonge) : un livre avancé sur JavaScript ; il explique et met en place certains concepts que nous avons survolés ici ; disponible en version dématérialisée ou en ligne
 - [Lo-Dash](https://lodash.com/) : une bibliothèque JavaScript qui propose notamment des fonctions d'ordre supérieur très intéressantes pour manipuler les collections
 - [Bacon.js](https://baconjs.github.io/) : une bibliothèque JavaScript qui permet de faire de la programmation fonctionnelle [réactive](https://fr.wikipedia.org/wiki/Programmation_r%C3%A9active)
+- [Is your programming language unreasonable?](http://fsharpforfunandprofit.com/posts/is-your-language-unreasonable/) *or, why predictability is important*
 
 # Questions ?
 
