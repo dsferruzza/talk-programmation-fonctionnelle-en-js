@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Check if the commit is done on master branch
+if [ $(git rev-parse --abbrev-ref HEAD) = "master" ]; then
+	git checkout gh-pages
+
+	# Get new content from master to gh-pages
+	FILE="talk-programmation-fonctionnelle-en-js.html"
+	git checkout master -- $FILE
+	git reset HEAD $FILE # Remove file from stage
+	mv $FILE index.html
+	git commit -am "Get content from master branch"
+
+	git checkout master
+fi
