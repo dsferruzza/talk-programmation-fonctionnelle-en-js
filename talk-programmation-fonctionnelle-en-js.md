@@ -262,6 +262,7 @@ Si vous avez un tableau et que vous voulez :
 	- *évaluation paresseuse*
 	- *immuabilité*
 	- *systèmes de types avancés*
+	- ...
 
 La programmation fonctionnelle offre de belles manières d'écrire des programmes fiables et maintenables.
 
@@ -279,6 +280,8 @@ La programmation fonctionnelle offre de belles manières d'écrire des programme
 <div style="text-align:center">![](img/question.gif)</div>
 
 <div style="text-align:center">
+Twitter : \@d_sferruzza
+
 Slides sur GitHub :
 
 [dsferruzza/talk-programmation-fonctionnelle-en-js](http://github.com/dsferruzza/talk-programmation-fonctionnelle-en-js)
