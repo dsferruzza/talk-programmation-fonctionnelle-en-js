@@ -46,7 +46,7 @@ function diviserParDeux(nombre) {
 }
 ```
 
-Cette fonction a des **effets de bord** qu'on ne peut pas deviner en regardant sa valeur de retour.
+Cette fonction a des **effets de bord** *observables* qu'on ne peut pas deviner en regardant sa valeur de retour.
 Il faut donc faire constamment attention lorsqu'on la manipule !
 
 <div style="text-align:center"><img src="img/fail.gif" alt="" width="225"></div>
@@ -260,7 +260,7 @@ Si vous avez un tableau et que vous voulez :
 - utiliser des mécanismes qui facilitent le raisonnement :
 	- transparence référentielle
 	- fonctions d’ordre supérieur
-	- *évaluation paresseuse*
+	- *évaluation paresseuse* <mark>&larr; venez à mon talk !</mark>
 	- *immuabilité*
 	- *systèmes de types avancés*
 	- ...
