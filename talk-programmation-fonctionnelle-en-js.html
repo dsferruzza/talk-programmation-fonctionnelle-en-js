@@ -2,32 +2,50 @@
 <head>
 <meta charset="utf-8">
   <meta name="author" content="David Sferruzza" />
-  <title>Quelques concepts de programmation fonctionnelle appliqués à JavaScript</title>
+  <title>Améliorez votre JS grâce à la puissance de la programmation fonctionnelle !</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
+div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; }
-code > span.dt { color: #902000; }
-code > span.dv { color: #40a070; }
-code > span.bn { color: #40a070; }
-code > span.fl { color: #40a070; }
-code > span.ch { color: #4070a0; }
-code > span.st { color: #4070a0; }
-code > span.co { color: #60a0b0; font-style: italic; }
-code > span.ot { color: #007020; }
-code > span.al { color: #ff0000; font-weight: bold; }
-code > span.fu { color: #06287e; }
-code > span.er { color: #ff0000; font-weight: bold; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <section class="title">
-  <h1 class="title">Quelques concepts de programmation fonctionnelle appliqués à JavaScript</h1>
+  <h1 class="title">Améliorez votre JS grâce à la puissance de la programmation fonctionnelle !</h1>
   <h2 class="author">David Sferruzza</h2>
   <h3 class="date"></h3>
 </section>
@@ -61,18 +79,18 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>Apprendre Haskell permet d'écrire de meilleurs programmes, même dans d'autres langages.</p>
 </blockquote>
 <div style="text-align:center">
-<img src="img/promise.gif" />
+<img src="img/promise.gif" alt="" />
 </div>
 <p>C'est ce qui s'est passé pour moi \o/</p>
 <h2 id="on-va-voir-quelques-concepts-de-fp-qui-peuvent-sappliquer-à-javascript-et-comment-ça-améliore-le-code">On va voir quelques concepts de FP qui peuvent s'appliquer à JavaScript, et comment ça améliore le code !</h2>
 </section>
 <section id="fonction-impure" class="slide level1">
 <h1>Fonction impure</h1>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">diviserParDeux</span>(nombre) {
-    <span class="kw">var</span> missile = <span class="fu">lancerUnMissileNucleaire</span>();
-    <span class="fu">fairePorterLeChapeauAuDrManhattan</span>(missile);
-    <span class="kw">return</span> nombre / <span class="dv">2</span>;
-}</code></pre>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="at">diviserParDeux</span>(nombre) <span class="op">{</span>
+    <span class="kw">var</span> missile <span class="op">=</span> <span class="at">lancerUnMissileNucleaire</span>()<span class="op">;</span>
+    <span class="at">fairePorterLeChapeauAuDrManhattan</span>(missile)<span class="op">;</span>
+    <span class="cf">return</span> nombre / <span class="dv">2</span><span class="op">;</span>
+<span class="op">}</span></code></pre></div>
 <p>Cette fonction a des <strong>effets de bord</strong> qu'on ne peut pas deviner en regardant sa valeur de retour. Il faut donc faire constamment attention lorsqu'on la manipule !</p>
 <div style="text-align:center">
 <img src="img/fail.gif" alt="" width="225">
@@ -80,11 +98,11 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </section>
 <section id="fonction-pure" class="slide level1">
 <h1>Fonction pure</h1>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">ajouterCinq</span>(nombre) {
-    <span class="kw">return</span> nombre + <span class="dv">5</span>;
-}</code></pre>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="at">ajouterCinq</span>(nombre) <span class="op">{</span>
+    <span class="cf">return</span> nombre <span class="op">+</span> <span class="dv">5</span><span class="op">;</span>
+<span class="op">}</span></code></pre></div>
 <p>Cette fonction n'a pas d'effets de bord. Elle renvoie <strong>toujours</strong> le même résultat lorsqu'on l'appelle avec les mêmes arguments.</p>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">ajouterCinq</span>(-<span class="dv">4</span>) == <span class="fu">ajouterCinq</span>(-<span class="dv">4</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="at">ajouterCinq</span>(<span class="op">-</span><span class="dv">4</span>) <span class="op">==</span> <span class="at">ajouterCinq</span>(<span class="op">-</span><span class="dv">4</span>)</code></pre></div>
 <div style="text-align:center">
 <img src="img/excellent.gif" alt="" width="420">
 </div>
@@ -120,17 +138,17 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </section>
 <section id="exemple-de-fonction-dordre-supérieur" class="slide level1">
 <h1>Exemple de fonction d'ordre supérieur</h1>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">appliquerDeuxFois</span>(f, x) {
-    <span class="kw">return</span> <span class="fu">f</span>(<span class="fu">f</span>(x));
-}
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="at">appliquerDeuxFois</span>(f<span class="op">,</span> x) <span class="op">{</span>
+    <span class="cf">return</span> <span class="at">f</span>(<span class="at">f</span>(x))<span class="op">;</span>
+<span class="op">}</span>
 <span class="co">// ^ accepte une fonction en paramètre</span>
 
-<span class="kw">function</span> <span class="fu">foisTrois</span>(x) {
-    <span class="kw">return</span> x * <span class="dv">3</span>;
-}
+<span class="kw">function</span> <span class="at">foisTrois</span>(x) <span class="op">{</span>
+    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">3</span><span class="op">;</span>
+<span class="op">}</span>
 
-<span class="fu">appliquerDeuxFois</span>(foisTrois, <span class="dv">7</span>);
-<span class="co">// --&gt; (7 * 3) * 3 = 63</span></code></pre>
+<span class="at">appliquerDeuxFois</span>(foisTrois<span class="op">,</span> <span class="dv">7</span>)<span class="op">;</span>
+<span class="co">// --&gt; (7 * 3) * 3 = 63</span></code></pre></div>
 </section>
 <section id="intérêt-des-fonctions-dordre-supérieur" class="slide level1">
 <h1>Intérêt des fonctions d'ordre supérieur</h1>
@@ -145,26 +163,26 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </section>
 <section id="situation" class="slide level1">
 <h1>Situation</h1>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> villes = [
-    { <span class="dt">nom</span>: <span class="st">&quot;Nantes&quot;</span>, <span class="dt">dep</span>: <span class="dv">44</span>, <span class="dt">mer</span>: <span class="kw">false</span> },
-    { <span class="dt">nom</span>: <span class="st">&quot;Dunkerque&quot;</span>, <span class="dt">dep</span>: <span class="dv">59</span>, <span class="dt">mer</span>: <span class="kw">true</span> },
-    { <span class="dt">nom</span>: <span class="st">&quot;Paris&quot;</span>, <span class="dt">dep</span>: <span class="dv">75</span>, <span class="dt">mer</span>: <span class="kw">false</span> },
-];</code></pre>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> villes <span class="op">=</span> [
+    <span class="op">{</span> <span class="dt">nom</span><span class="op">:</span> <span class="st">&quot;Nantes&quot;</span><span class="op">,</span> <span class="dt">dep</span><span class="op">:</span> <span class="dv">44</span><span class="op">,</span> <span class="dt">mer</span><span class="op">:</span> <span class="kw">false</span> <span class="op">},</span>
+    <span class="op">{</span> <span class="dt">nom</span><span class="op">:</span> <span class="st">&quot;Dunkerque&quot;</span><span class="op">,</span> <span class="dt">dep</span><span class="op">:</span> <span class="dv">59</span><span class="op">,</span> <span class="dt">mer</span><span class="op">:</span> <span class="kw">true</span> <span class="op">},</span>
+    <span class="op">{</span> <span class="dt">nom</span><span class="op">:</span> <span class="st">&quot;Paris&quot;</span><span class="op">,</span> <span class="dt">dep</span><span class="op">:</span> <span class="dv">75</span><span class="op">,</span> <span class="dt">mer</span><span class="op">:</span> <span class="kw">false</span> <span class="op">},</span>
+]<span class="op">;</span></code></pre></div>
 <p>On veut obtenir une liste de chaines de type <code>ville (dep)</code>.</p>
 <p>On va écrire une fonction <code>rendreVillesAffichables</code> telle que :</p>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">rendreVillesAffichables</span>(villes);
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="at">rendreVillesAffichables</span>(villes)<span class="op">;</span>
 <span class="co">// --&gt; [&quot;Nantes (44)&quot;, &quot;Dunkerque (59)&quot;,</span>
-<span class="co">//      &quot;Paris (75)&quot;]</span></code></pre>
+<span class="co">//      &quot;Paris (75)&quot;]</span></code></pre></div>
 </section>
 <section id="solution-impérative" class="slide level1">
 <h1>Solution impérative</h1>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">rendreVillesAffichables</span>(villes) {
-    <span class="kw">for</span> (<span class="kw">var</span> i = <span class="dv">0</span>; i &lt; <span class="ot">villes</span>.<span class="fu">length</span>; i++) {
-        villes[i] = villes[i].<span class="fu">nom</span> +
-                    <span class="st">&quot; (&quot;</span> + villes[i].<span class="fu">dep</span> + <span class="st">&quot;)&quot;</span>;
-    }
-    <span class="kw">return</span> villes;
-}</code></pre>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="at">rendreVillesAffichables</span>(villes) <span class="op">{</span>
+    <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">villes</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span>
+        villes[i] <span class="op">=</span> villes[i].<span class="at">nom</span> <span class="op">+</span>
+                    <span class="st">&quot; (&quot;</span> <span class="op">+</span> villes[i].<span class="at">dep</span> <span class="op">+</span> <span class="st">&quot;)&quot;</span><span class="op">;</span>
+    <span class="op">}</span>
+    <span class="cf">return</span> villes<span class="op">;</span>
+<span class="op">}</span></code></pre></div>
 <p>On mélange 2 comportements :</p>
 <ul>
 <li>parcourir le tableau</li>
@@ -173,13 +191,13 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </section>
 <section id="array.map" class="slide level1">
 <h1>Array.map</h1>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">rendreVillesAffichables</span>(villes) {
-    <span class="kw">function</span> <span class="fu">transformation</span>(ville) {
-        <span class="kw">return</span> <span class="ot">ville</span>.<span class="fu">nom</span> +
-                <span class="st">&quot; (&quot;</span> + <span class="ot">ville</span>.<span class="fu">dep</span> + <span class="st">&quot;)&quot;</span>;
-    }
-    <span class="kw">return</span> <span class="ot">villes</span>.<span class="fu">map</span>(transformation);
-}</code></pre>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="at">rendreVillesAffichables</span>(villes) <span class="op">{</span>
+    <span class="kw">function</span> <span class="at">transformation</span>(ville) <span class="op">{</span>
+        <span class="cf">return</span> <span class="va">ville</span>.<span class="at">nom</span> <span class="op">+</span>
+                <span class="st">&quot; (&quot;</span> <span class="op">+</span> <span class="va">ville</span>.<span class="at">dep</span> <span class="op">+</span> <span class="st">&quot;)&quot;</span><span class="op">;</span>
+    <span class="op">}</span>
+    <span class="cf">return</span> <span class="va">villes</span>.<span class="at">map</span>(transformation)<span class="op">;</span>
+<span class="op">}</span></code></pre></div>
 <ul>
 <li><code>Array.map</code> gère le parcours du tableau \o/</li>
 <li>on gère la transformation</li>
@@ -187,52 +205,52 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </section>
 <section id="array.filter" class="slide level1">
 <h1>Array.filter</h1>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="ot">villes</span>.<span class="fu">filter</span>(<span class="kw">function</span>(item) {
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">villes</span>.<span class="at">filter</span>(<span class="kw">function</span>(item) <span class="op">{</span>
     <span class="co">// Si la ville est près de la mer,</span>
     <span class="co">// on renvoie true, sinon false</span>
-    <span class="kw">return</span> <span class="ot">item</span>.<span class="fu">mer</span>;
-});
+    <span class="cf">return</span> <span class="va">item</span>.<span class="at">mer</span><span class="op">;</span>
+<span class="op">}</span>)<span class="op">;</span>
 <span class="co">// --&gt; [ { nom: &quot;Dunkerque&quot;, dep: 59,</span>
-<span class="co">//          mer: true } </span></code></pre>
+<span class="co">//          mer: true } </span></code></pre></div>
 </section>
 <section id="chainons" class="slide level1">
 <h1>Chainons !</h1>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="ot">villes</span>.<span class="fu">filter</span>(<span class="kw">function</span>(item) {
-    <span class="kw">return</span> !<span class="ot">item</span>.<span class="fu">mer</span>;
-}).<span class="fu">map</span>(<span class="kw">function</span>(item) {
-    <span class="kw">return</span> <span class="ot">item</span>.<span class="fu">nom</span> + <span class="st">&quot; (&quot;</span> + <span class="ot">item</span>.<span class="fu">dep</span> + <span class="st">&quot;)&quot;</span>;
-});
-<span class="co">// --&gt; [&quot;Nantes (44)&quot;, &quot;Paris (75)&quot;]</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">villes</span>.<span class="at">filter</span>(<span class="kw">function</span>(item) <span class="op">{</span>
+    <span class="cf">return</span> <span class="op">!</span><span class="va">item</span>.<span class="at">mer</span><span class="op">;</span>
+<span class="op">}</span>).<span class="at">map</span>(<span class="kw">function</span>(item) <span class="op">{</span>
+    <span class="cf">return</span> <span class="va">item</span>.<span class="at">nom</span> <span class="op">+</span> <span class="st">&quot; (&quot;</span> <span class="op">+</span> <span class="va">item</span>.<span class="at">dep</span> <span class="op">+</span> <span class="st">&quot;)&quot;</span><span class="op">;</span>
+<span class="op">}</span>)<span class="op">;</span>
+<span class="co">// --&gt; [&quot;Nantes (44)&quot;, &quot;Paris (75)&quot;]</span></code></pre></div>
 <p><em>Rappel : <code>Array.map</code> et <code>Array.filter</code> sont des fonctions d'ordre supérieur.</em></p>
 </section>
 <section id="array.reduce" class="slide level1">
 <h1>Array.reduce</h1>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> personnes = [
-    { <span class="dt">nom</span>: <span class="st">&quot;Bruce&quot;</span>, <span class="dt">age</span>: <span class="dv">30</span> },
-    { <span class="dt">nom</span>: <span class="st">&quot;Tony&quot;</span>, <span class="dt">age</span>: <span class="dv">35</span> },
-    { <span class="dt">nom</span>: <span class="st">&quot;Peter&quot;</span>, <span class="dt">age</span>: <span class="dv">26</span> },
-];
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> personnes <span class="op">=</span> [
+    <span class="op">{</span> <span class="dt">nom</span><span class="op">:</span> <span class="st">&quot;Bruce&quot;</span><span class="op">,</span> <span class="dt">age</span><span class="op">:</span> <span class="dv">30</span> <span class="op">},</span>
+    <span class="op">{</span> <span class="dt">nom</span><span class="op">:</span> <span class="st">&quot;Tony&quot;</span><span class="op">,</span> <span class="dt">age</span><span class="op">:</span> <span class="dv">35</span> <span class="op">},</span>
+    <span class="op">{</span> <span class="dt">nom</span><span class="op">:</span> <span class="st">&quot;Peter&quot;</span><span class="op">,</span> <span class="dt">age</span><span class="op">:</span> <span class="dv">26</span> <span class="op">},</span>
+]<span class="op">;</span>
 
-<span class="ot">personnes</span>.<span class="fu">reduce</span>(<span class="kw">function</span>(acc, cur) {
-    <span class="kw">return</span> acc + <span class="ot">cur</span>.<span class="fu">age</span>;
-}, <span class="dv">0</span>);
-<span class="co">// --&gt; 91</span></code></pre>
+<span class="va">personnes</span>.<span class="at">reduce</span>(<span class="kw">function</span>(acc<span class="op">,</span> cur) <span class="op">{</span>
+    <span class="cf">return</span> acc <span class="op">+</span> <span class="va">cur</span>.<span class="at">age</span><span class="op">;</span>
+<span class="op">},</span> <span class="dv">0</span>)<span class="op">;</span>
+<span class="co">// --&gt; 91</span></code></pre></div>
 </section>
 <section id="array.reduce-1" class="slide level1">
 <h1>Array.reduce</h1>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">map</span>(tableau, transformation) {
-    <span class="kw">return</span> <span class="ot">tableau</span>.<span class="fu">reduce</span>(<span class="kw">function</span>(acc, cur) {
-        <span class="ot">acc</span>.<span class="fu">push</span>(<span class="fu">transformation</span>(cur));
-        <span class="kw">return</span> acc;
-    }, []);
-}
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="at">map</span>(tableau<span class="op">,</span> transformation) <span class="op">{</span>
+    <span class="cf">return</span> <span class="va">tableau</span>.<span class="at">reduce</span>(<span class="kw">function</span>(acc<span class="op">,</span> cur) <span class="op">{</span>
+        <span class="va">acc</span>.<span class="at">push</span>(<span class="at">transformation</span>(cur))<span class="op">;</span>
+        <span class="cf">return</span> acc<span class="op">;</span>
+    <span class="op">},</span> [])<span class="op">;</span>
+<span class="op">}</span>
 
-<span class="kw">function</span> <span class="fu">filter</span>(tableau, predicat) {
-    <span class="kw">return</span> <span class="ot">tableau</span>.<span class="fu">reduce</span>(<span class="kw">function</span>(acc, cur) {
-        <span class="kw">if</span> (<span class="fu">predicat</span>(cur)) <span class="ot">acc</span>.<span class="fu">push</span>(cur);
-        <span class="kw">return</span> acc;
-    }, []);
-}</code></pre>
+<span class="kw">function</span> <span class="at">filter</span>(tableau<span class="op">,</span> predicat) <span class="op">{</span>
+    <span class="cf">return</span> <span class="va">tableau</span>.<span class="at">reduce</span>(<span class="kw">function</span>(acc<span class="op">,</span> cur) <span class="op">{</span>
+        <span class="cf">if</span> (<span class="at">predicat</span>(cur)) <span class="va">acc</span>.<span class="at">push</span>(cur)<span class="op">;</span>
+        <span class="cf">return</span> acc<span class="op">;</span>
+    <span class="op">},</span> [])<span class="op">;</span>
+<span class="op">}</span></code></pre></div>
 </section>
 <section id="antisèche" class="slide level1">
 <h1>Antisèche</h1>
@@ -272,7 +290,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <section id="questions" class="slide level1">
 <h1>Questions ?</h1>
 <div style="text-align:center">
-<img src="img/question.gif" />
+<img src="img/question.gif" alt="" />
 </div>
 <div style="text-align:center">
 <p>Twitter : @d_sferruzza</p>

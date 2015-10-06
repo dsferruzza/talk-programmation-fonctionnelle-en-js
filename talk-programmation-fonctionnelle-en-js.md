@@ -1,4 +1,4 @@
-% Quelques concepts de programmation fonctionnelle appliqués à JavaScript
+% Améliorez votre JS grâce à la puissance de la programmation fonctionnelle !
 % David Sferruzza
 
 # À propos de moi

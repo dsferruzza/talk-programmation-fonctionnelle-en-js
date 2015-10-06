@@ -1,5 +1,5 @@
-Quelques concepts de programmation fonctionnelle appliqués à JavaScript
-=======================================================================
+Améliorez votre JS grâce à la puissance de la programmation fonctionnelle !
+===========================================================================
 
 Adapté de l'article sur 24 jours de web : http://www.24joursdeweb.fr/2014/un-peu-de-programmation-fonctionnelle-en-javascript/
 
