@@ -6,7 +6,8 @@
 - [\@d_sferruzza](https://twitter.com/d\_sferruzza)
 - [github.com/dsferruzza](https://github.com/dsferruzza)
 - développeur et responsable R&D chez [Escale](http://www.escaledigitale.com)
-- écrit des projets perso et pro en Scala et en Haskell (notamment) depuis ~ 1 an
+- doctorant en génie logiciel à l'Université de Nantes
+- écrit des projets perso et pro en Scala et en Haskell (notamment) depuis ~ 2 an
 - ce talk est inspiré d'un article que j'ai écrit pour [24 jours de web](http://www.24joursdeweb.fr/2014/un-peu-de-programmation-fonctionnelle-en-javascript)
 
 
