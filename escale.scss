@@ -1,0 +1,87 @@
+
+// Default mixins and settings -----------------
+@import "./lib/reveal.js/css/theme/template/mixins";
+@import "./lib/reveal.js/css/theme/template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import "./lib/lato-font/scss/public-api.scss";
+$lato-font-path: './lib/lato-font/fonts';
+@include lato-render-variants($lato-variants);
+
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Lato', sans-serif;
+$mainColor: #000;
+$headingFont: 'Lato', sans-serif;
+$headingColor: #5ea5ab;
+$headingTextShadow: none;
+$headingTextTransform: none;
+$backgroundColor: #fff;
+$linkColor: $headingColor;
+$linkColorHover: darken( $linkColor, 20% );
+$selectionBackgroundColor: rgba(0, 0, 0, 0.99);
+$mainFontSize: 38px;
+
+$heading1Size: 3.77em / 2;
+$heading2Size: 2.11em / 2;
+$heading3Size: 1.55em / 2;
+$heading4Size: 1.00em / 2;
+
+
+// Theme template ------------------------------
+@import "./lib/reveal.js/css/theme/template/theme";
+// ---------------------------------------------
+
+.reveal {
+	.slides {
+		section {
+			&:first-child {
+				h2, h3 {
+					color: $mainColor;
+				}
+				h1 { font-size: $heading1Size * 1.5; }
+				h2 { font-size: $heading2Size * 1.5; }
+				h3 { font-size: $heading3Size * 1.5; }
+			}
+
+			img {
+				border: none;
+				box-shadow: none;
+			}
+
+			#escale {
+				margin-top: 5em;
+			}
+
+			pre {
+				box-shadow: none;
+				font-size: 0.85em;
+
+				code {
+					background-color: transparent;
+					color: black;
+					overflow: inherit;
+				}
+			}
+		}
+	}
+
+	.slide-number {
+		font-size: 30px;
+	}
+}
+
+// Syntax highlight ----------------------------
+@import "./node_modules/highlight.js/styles/tomorrow";
+// ---------------------------------------------
+.scala {
+	& .hljs-type {
+		color: #3e999f;
+	}
+	& .hljs-function {
+		color: #000;
+	}
+}

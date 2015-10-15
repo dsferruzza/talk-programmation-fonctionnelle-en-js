@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="David Sferruzza" />
+  <title>Améliorez votre JS grâce à la puissance de la programmation fonctionnelle !</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="lib/reveal.js/css/reveal.css"/>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="escale.css" id="theme">
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = 'lib/reveal.js/css/print/pdf.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Améliorez votre JS grâce à la puissance de la programmation fonctionnelle !</h1>
+    <h2 class="author">David Sferruzza</h2>
+    <h3 class="date"></h3>
+</section>
+
+<section id="à-propos-de-moi" class="slide level1">
+<h1>À propos de moi</h1>
+<ul>
+<li><a href="https://twitter.com/d_sferruzza">@d_sferruzza</a></li>
+<li><a href="https://github.com/dsferruzza">github.com/dsferruzza</a></li>
+<li>développeur et responsable R&amp;D chez <a href="http://www.escaledigitale.com">Escale</a></li>
+<li>doctorant en génie logiciel à l'Université de Nantes</li>
+<li>écrit des projets perso et pro en Scala et en Haskell (notamment) depuis ~ 2 an</li>
+<li>ce talk est inspiré d'un article que j'ai écrit pour <a href="http://www.24joursdeweb.fr/2014/un-peu-de-programmation-fonctionnelle-en-javascript">24 jours de web</a></li>
+</ul>
+<div style="text-align:center">
+<img src="img/escale.png" alt="">
+</div>
+</section>
+<section id="découverte-de-la-programmation-fonctionnelle" class="slide level1">
+<h1>Découverte de la programmation fonctionnelle</h1>
+<p>C'est un paradigme différent de la programmation <em>impérative</em> &quot;classique&quot;, ce qui implique :</p>
+<ul>
+<li>nouveaux concepts</li>
+<li>ré-apprendre à résoudre des problèmes simples</li>
+</ul>
+<p>Intérêt ?</p>
+<ul>
+<li>prendre du recul sur la programmation</li>
+<li>agrandir <strong>et</strong> consolider sa zone de confort</li>
+<li>réutiliser les concepts intéressants pour faire de <strong>meilleurs programmes</strong></li>
+</ul>
+</section>
+<section id="la-promesse" class="slide level1">
+<h1>La promesse</h1>
+<blockquote>
+<p>Apprendre Haskell permet d'écrire de meilleurs programmes, même dans d'autres langages.</p>
+</blockquote>
+<div style="text-align:center">
+<img src="img/promise.gif" />
+</div>
+<h2 id="on-va-voir-quelques-concepts-de-fp-qui-peuvent-sappliquer-à-javascript-et-comment-ça-améliore-le-code">On va voir quelques concepts de FP qui peuvent s'appliquer à JavaScript, et comment ça améliore le code !</h2>
+</section>
+<section id="fonction-impure" class="slide level1">
+<h1>Fonction impure</h1>
+<pre class="javascript"><code>function diviserParDeux(nombre) {
+    var missile = lancerUnMissileNucleaire();
+    fairePorterLeChapeauAuDrManhattan(missile);
+    return nombre / 2;
+}</code></pre>
+<p>Cette fonction a des <strong>effets de bord</strong> <em>observables</em> qu'on ne peut pas deviner en regardant sa valeur de retour. Il faut donc faire constamment attention lorsqu'on la manipule !</p>
+<div style="text-align:center">
+<img src="img/fail.gif" alt="" width="225">
+</div>
+</section>
+<section id="fonction-pure" class="slide level1">
+<h1>Fonction pure</h1>
+<pre class="javascript"><code>function ajouterCinq(nombre) {
+    return nombre + 5;
+}</code></pre>
+<p>Cette fonction n'a pas d'effets de bord. Elle renvoie <strong>toujours</strong> le même résultat lorsqu'on l'appelle avec les mêmes arguments.</p>
+<pre class="javascript"><code>ajouterCinq(-4) == ajouterCinq(-4)</code></pre>
+<div style="text-align:center">
+<img src="img/excellent.gif" alt="" width="420">
+</div>
+</section>
+<section id="transparence-référentielle" class="slide level1">
+<h1>Transparence référentielle</h1>
+<blockquote>
+<p>Le résultat du programme ne change pas si on remplace une expression par une expression de valeur équivalente.</p>
+</blockquote>
+<p>Utiliser des fonctions pures permet de <strong>résonner</strong> sur son programme comme sur une équation.</p>
+<div style="text-align:center">
+<img src="img/mind_blown.gif" alt="" width="488">
+</div>
+</section>
+<section id="recommandations" class="slide level1">
+<h1>Recommandations</h1>
+<h2 id="construire-son-programme-avec-un-maximum-de-fonctions-pures">Construire son programme avec un maximum de fonctions pures</h2>
+<p>La logique métier est fiable, sans surprise et aisément testable.</p>
+<h2 id="isoler-les-fonctions-qui-ont-des-effets-de-bord">Isoler les fonctions qui ont des effets de bord</h2>
+<p>On sait quelles fonctions ont des effets de bord, ce qui permet d’être prudent lorsqu’on les manipule.</p>
+</section>
+<section id="fonction-dordre-supérieur" class="slide level1">
+<h1>Fonction d'ordre supérieur</h1>
+<p>En JS, les fonctions sont des objets de première classe (<em>first-class citizen</em>).</p>
+<p>Une fonction d’ordre supérieur est une fonction qui possède au moins l'une des propriétés suivantes :</p>
+<ul>
+<li>elle accepte au moins une autre fonction en paramètre</li>
+<li>elle retourne une fonction en résultat</li>
+</ul>
+<div style="text-align:center">
+<img src="img/first_class.gif" alt="" width="305">
+</div>
+</section>
+<section id="exemple-de-fonction-dordre-supérieur" class="slide level1">
+<h1>Exemple de fonction d'ordre supérieur</h1>
+<pre class="javascript"><code>function appliquerDeuxFois(f, x) {
+    return f(f(x));
+}
+// ^ accepte une fonction en paramètre
+
+function foisTrois(x) {
+    return x * 3;
+}
+
+appliquerDeuxFois(foisTrois, 7);
+// --&gt; (7 * 3) * 3 = 63</code></pre>
+</section>
+<section id="intérêt-des-fonctions-dordre-supérieur" class="slide level1">
+<h1>Intérêt des fonctions d'ordre supérieur</h1>
+<ul>
+<li>bien séparer les différentes tâches effectuées par nos fonctions</li>
+<li>écrire des fonctions composables, modulables, paramétrables</li>
+</ul>
+<p>On va voir un exemple concret : les opérations sur les tableaux en JS.</p>
+<div style="text-align:center">
+<img src="img/inception.gif" alt="" width="330">
+</div>
+</section>
+<section id="situation" class="slide level1">
+<h1>Situation</h1>
+<pre class="javascript"><code>var villes = [
+    { nom: &quot;Nantes&quot;, dep: 44, mer: false },
+    { nom: &quot;Dunkerque&quot;, dep: 59, mer: true },
+    { nom: &quot;Paris&quot;, dep: 75, mer: false },
+];</code></pre>
+<p>On veut obtenir une liste de chaines de type <code>ville (dep)</code>.</p>
+<p>On va écrire une fonction <code>rendreVillesAffichables</code> telle que :</p>
+<pre class="javascript"><code>rendreVillesAffichables(villes);
+// --&gt; [&quot;Nantes (44)&quot;, &quot;Dunkerque (59)&quot;,
+//      &quot;Paris (75)&quot;]</code></pre>
+</section>
+<section id="solution-impérative" class="slide level1">
+<h1>Solution impérative</h1>
+<pre class="javascript"><code>function rendreVillesAffichables(villes) {
+    for (var i = 0; i &lt; villes.length; i++) {
+        villes[i] = villes[i].nom +
+                    &quot; (&quot; + villes[i].dep + &quot;)&quot;;
+    }
+    return villes;
+}</code></pre>
+<p>On mélange 2 comportements :</p>
+<ul>
+<li>parcourir le tableau</li>
+<li>transformer les données</li>
+</ul>
+</section>
+<section id="array.map" class="slide level1">
+<h1>Array.map</h1>
+<pre class="javascript"><code>function rendreVillesAffichables(villes) {
+    function transformation(ville) {
+        return ville.nom +
+                &quot; (&quot; + ville.dep + &quot;)&quot;;
+    }
+    return villes.map(transformation);
+}</code></pre>
+<ul>
+<li><code>Array.map</code> gère le parcours du tableau \o/</li>
+<li>on gère la transformation</li>
+</ul>
+</section>
+<section id="array.filter" class="slide level1">
+<h1>Array.filter</h1>
+<pre class="javascript"><code>villes.filter(function(item) {
+    // Si la ville est près de la mer,
+    // on renvoie true, sinon false
+    return item.mer;
+});
+// --&gt; [ { nom: &quot;Dunkerque&quot;, dep: 59,
+//          mer: true } </code></pre>
+</section>
+<section id="chainons" class="slide level1">
+<h1>Chainons !</h1>
+<pre class="javascript"><code>villes.filter(function(item) {
+    return !item.mer;
+}).map(function(item) {
+    return item.nom + &quot; (&quot; + item.dep + &quot;)&quot;;
+});
+// --&gt; [&quot;Nantes (44)&quot;, &quot;Paris (75)&quot;]</code></pre>
+<p><em>Rappel : <code>Array.map</code> et <code>Array.filter</code> sont des fonctions d'ordre supérieur.</em></p>
+</section>
+<section id="array.reduce" class="slide level1">
+<h1>Array.reduce</h1>
+<pre class="javascript"><code>var personnes = [
+    { nom: &quot;Bruce&quot;, age: 30 },
+    { nom: &quot;Tony&quot;, age: 35 },
+    { nom: &quot;Peter&quot;, age: 26 },
+];
+
+personnes.reduce(function(acc, cur) {
+    return acc + cur.age;
+}, 0);
+// --&gt; 91</code></pre>
+</section>
+<section id="array.reduce-1" class="slide level1">
+<h1>Array.reduce</h1>
+<pre class="javascript"><code>function map(tableau, transformation) {
+    return tableau.reduce(function(acc, cur) {
+        acc.push(transformation(cur));
+        return acc;
+    }, []);
+}
+
+function filter(tableau, predicat) {
+    return tableau.reduce(function(acc, cur) {
+        if (predicat(cur)) acc.push(cur);
+        return acc;
+    }, []);
+}</code></pre>
+</section>
+<section id="antisèche" class="slide level1">
+<h1>Antisèche</h1>
+<p>Si vous avez un tableau et que vous voulez :</p>
+<ul>
+<li>appliquer une transformation sur chacune de ses cases (en conservant leur ordre/nombre) : <strong>map</strong></li>
+<li>supprimer certaines cases (en conservant l’ordre et le contenu des autres) : <strong>filter</strong></li>
+<li>le parcourir pour construire une nouvelle structure de données : <strong>reduce</strong></li>
+</ul>
+</section>
+<section id="conclusion" class="slide level1">
+<h1>Conclusion</h1>
+<ul>
+<li>écrire du code qui fonctionne ne suffit pas</li>
+<li>utiliser des mécanismes qui facilitent le raisonnement :
+<ul>
+<li>transparence référentielle</li>
+<li>fonctions d’ordre supérieur</li>
+<li><em>évaluation paresseuse</em> <mark>← venez à mon talk !</mark></li>
+<li><em>immuabilité</em></li>
+<li><em>systèmes de types avancés</em></li>
+<li>...</li>
+</ul></li>
+</ul>
+<p>La programmation fonctionnelle offre de belles manières d'écrire des programmes fiables et maintenables.</p>
+</section>
+<section id="ressources" class="slide level1">
+<h1>Ressources</h1>
+<ul>
+<li><a href="http://learnyouahaskell.com/">Learn You A Haskell For Great Good</a> : LE livre pour débuter Haskell ; il est très accessible (<a href="http://lyah.haskell.fr/">traduction FR non officielle</a>)</li>
+<li><a href="https://leanpub.com/javascript-allonge">JavaScript Alongé</a> : un livre avancé sur JavaScript ; il explique et met en place certains concepts vus ici</li>
+<li><a href="https://lodash.com/">Lo-Dash</a> : une bibliothèque JavaScript qui propose notamment des fonctions d'ordre supérieur très intéressantes pour manipuler les collections</li>
+<li><a href="https://baconjs.github.io/">Bacon.js</a> : une bibliothèque JavaScript qui permet de faire de la programmation fonctionnelle <a href="https://fr.wikipedia.org/wiki/Programmation_r%C3%A9active">réactive</a></li>
+<li><a href="http://fsharpforfunandprofit.com/posts/is-your-language-unreasonable/">Is your programming language unreasonable?</a> <em>or, why predictability is important</em></li>
+</ul>
+</section>
+<section id="questions" class="slide level1">
+<h1>Questions ?</h1>
+<div style="text-align:center">
+<img src="img/question.gif" />
+</div>
+<div style="text-align:center">
+<p>Twitter : @d_sferruzza</p>
+<p>Slides sur GitHub :</p>
+<a href="http://github.com/dsferruzza/talk-programmation-fonctionnelle-en-js">dsferruzza/talk-programmation-fonctionnelle-en-js</a>
+</div>
+</section>
+    </div>
+  </div>
+
+
+  <script src="lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="lib/reveal.js/js/reveal.js"></script>
+
+  <script>
+      // Dirty hack to remove slide IDs (because french accents break URLs)
+      var slides = document.querySelectorAll('.slides > section');
+      for (var i = 0; i < slides.length; ++i) {
+        slides[i].removeAttribute('id');
+      }
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,         // Display controls in the bottom right corner
+        progress: true,         // Display a presentation progress bar
+        history: true,          // Push each slide change to the browser history
+        center: false,                       // Vertical centering of slides
+        maxScale: 1.5,                  // Bounds for smallest/largest possible content scale
+        slideNumber: true,                // Display the page number of the current slide
+        theme: 'escale', // available themes are in /css/theme
+        transition: 'slide', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+          //{ src: 'lib/reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+          //{ src: 'lib/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]});
+    </script>
+    </body>
+</html>

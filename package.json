@@ -1,0 +1,22 @@
+{
+  "name": "presentation-starter",
+  "description": "A starter kit to make a presentation written in Markdown, using Pandoc and reveal.js",
+  "dependencies": {
+    "pandoc-bin": "0.1.2",
+    "watch-run": "1.2.2"
+  },
+  "devDependencies": {
+    "highlight.js": "8.8.0",
+    "node-sass": "3.3.3"
+  },
+  "scripts": {
+    "pandocVersion": "pandoc -v",
+    "buildCss": "node-sass escale.scss escale.css",
+    "build": "pandoc --standalone -t revealjs --template=template.html -V revealjs-url=lib/reveal.js -V theme=escale -V transition=slide -V slideNumber=true -V center=false --no-highlight presentation.md -o index.html",
+    "watch": "watch-run -i -p \"presentation.md\" npm run build",
+    "push": "git push -u origin master && git push -u origin gh-pages"
+  },
+  "author": "David Sferruzza",
+  "license": "MIT",
+  "private": true
+}

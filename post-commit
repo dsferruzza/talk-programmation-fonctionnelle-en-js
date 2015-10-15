@@ -2,21 +2,29 @@
 
 # Check if the commit is done on master branch
 if [ "$(git rev-parse --abbrev-ref HEAD)" = "master" ]; then
-	git checkout gh-pages
+	# Checkout the gh-pages branch
+	if [ "$(git branch --list --no-color gh-pages)" = "  gh-pages" ]; then
+		git checkout gh-pages
+	else
+		# Create the gh-pages branch if it doesn't exist
+		git checkout --orphan gh-pages
+		git rm -rf .
+		touch index.html
+		git add index.html
+		git commit -m "Initialize GitHub Pages"
+	fi
 
 	# Get new content from master to gh-pages
-	FILE[0]="talk-programmation-fonctionnelle-en-js.html"
+	FILE[0]="index.html"
 	FILE[1]="img/"
-	FILE[2]="styles.css"
-	FILE[3]="packed.html"
+	FILE[2]="*.css"
+	FILE[3]="lib/"
 
 	for F in ${FILE[*]}
 	do
 		git checkout master -- "$F"
 		git add "$F"
 	done
-	git reset HEAD "${FILE[0]}" # Remove file from stage
-	mv "${FILE[0]}" index.html
 	git commit -am "Get content from master branch"
 
 	git checkout master
