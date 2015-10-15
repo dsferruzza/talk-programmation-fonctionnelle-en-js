@@ -10,7 +10,7 @@
 - écrit des projets perso et pro en Scala et en Haskell (notamment) depuis ~ 2 an
 - ce talk est inspiré d'un article que j'ai écrit pour [24 jours de web](http://www.24joursdeweb.fr/2014/un-peu-de-programmation-fonctionnelle-en-javascript)
 
-<div style="text-align:center"><img src="img/escale.png" alt=""></div>
+![](img/escale.png)
 
 
 # Découverte de la programmation fonctionnelle
@@ -31,7 +31,7 @@ Intérêt ?
 
 > Apprendre Haskell permet d'écrire de meilleurs programmes, même dans d'autres langages.
 
-<div style="text-align:center">![](img/promise.gif)</div>
+![](img/promise.gif)
 
 ## On va voir quelques concepts de FP qui peuvent s'appliquer à JavaScript, et comment ça améliore le code !
 
@@ -49,7 +49,7 @@ function diviserParDeux(nombre) {
 Cette fonction a des **effets de bord** *observables* qu'on ne peut pas deviner en regardant sa valeur de retour.
 Il faut donc faire constamment attention lorsqu'on la manipule !
 
-<div style="text-align:center"><img src="img/fail.gif" alt="" width="225"></div>
+<figure><img src="img/fail.gif" alt="" width="225"></figure>
 
 
 # Fonction pure
@@ -66,7 +66,7 @@ Cette fonction n'a pas d'effets de bord. Elle renvoie **toujours** le même rés
 ajouterCinq(-4) == ajouterCinq(-4)
 ```
 
-<div style="text-align:center"><img src="img/excellent.gif" alt="" width="420"></div>
+<figure><img src="img/excellent.gif" alt="" width="420"></figure>
 
 
 # Transparence référentielle
@@ -75,7 +75,7 @@ ajouterCinq(-4) == ajouterCinq(-4)
 
 Utiliser des fonctions pures permet de **résonner** sur son programme comme sur une équation.
 
-<div style="text-align:center"><img src="img/mind_blown.gif" alt="" width="488"></div>
+<figure><img src="img/mind_blown.gif" alt="" width="488"></figure>
 
 
 # Recommandations
@@ -98,7 +98,7 @@ Une fonction d’ordre supérieur est une fonction qui possède au moins l'une d
 - elle accepte au moins une autre fonction en paramètre
 - elle retourne une fonction en résultat
 
-<div style="text-align:center"><img src="img/first_class.gif" alt="" width="305"></div>
+<figure><img src="img/first_class.gif" alt="" width="305"></figure>
 
 
 # Exemple de fonction d'ordre supérieur
@@ -125,7 +125,7 @@ appliquerDeuxFois(foisTrois, 7);
 
 On va voir un exemple concret : les opérations sur les tableaux en JS.
 
-<div style="text-align:center"><img src="img/inception.gif" alt="" width="330"></div>
+<figure><img src="img/inception.gif" alt="" width="330"></figure>
 
 
 # Situation
@@ -278,12 +278,10 @@ La programmation fonctionnelle offre de belles manières d'écrire des programme
 
 # Questions ?
 
-<div style="text-align:center">![](img/question.gif)</div>
+![](img/question.gif)
 
-<div style="text-align:center">
 Twitter : \@d_sferruzza
 
 Slides sur GitHub :
 
 [dsferruzza/talk-programmation-fonctionnelle-en-js](http://github.com/dsferruzza/talk-programmation-fonctionnelle-en-js)
-</div>
