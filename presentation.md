@@ -73,7 +73,7 @@ ajouterCinq(-4) == ajouterCinq(-4)
 
 > Le résultat du programme ne change pas si on remplace une expression par une expression de valeur équivalente.
 
-Utiliser des fonctions pures permet de **résonner** sur son programme comme sur une équation.
+Utiliser des fonctions pures permet de **raisonner** sur son programme comme sur une équation.
 
 <figure><img src="img/mind_blown.gif" alt="" width="488"></figure>
 
